@@ -82,7 +82,7 @@ def give_me_job(URL1, URL2):
     last_page_1 = extract_pages(URL1)
     print("INDEED Last Page:",last_page_1)
     indeed = indeed_jobs(last_page_1)
-
+    print('\n')
     #SARAMIN
     last_page_2 = extract_pages(URL2)
     print("SARAMIN Last Page:",last_page_2)
