@@ -86,7 +86,7 @@ def give_me_job(URL1, URL2):
     #SARAMIN
     last_page_2 = extract_pages(URL2)
     print("SARAMIN Last Page:",last_page_2)
-    saramin = extract_saramin_jobs(last_page_2)
+    saramin = saramin_jobs(last_page_2)
 
     #return My_Job.to_excel('./Jobs(Python).xlsx')
 
