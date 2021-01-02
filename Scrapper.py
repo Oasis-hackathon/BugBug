@@ -35,12 +35,15 @@ def extract_indeed(html):
 def extract_saramin(html):
     title = html.find("h2", {"class": "job_tit"}).find("a")["title"]
     company = html.find("div", {"class": "area_corp"})
-    company_anchor = company.find("a")
-    if company_anchor is not None:
-        company = company_anchor.string
+    if company:
+        company_anchor = company.find("a")
+        if company_anchor is not None:
+            company = company_anchor.string
+        else:
+            company = company.string
+        company = company.strip()
     else:
-        company = company.string
-    company = company.strip()
+        company = None
     location = html.find("div", {"class": "job_condition"}).find("a").string
     job_id = html["value"]
     return {'SITE':'SARAMIN','Job': title, 'Company': company, "Location": location, "Link": f"http://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx={job_id}"}
@@ -80,7 +83,7 @@ def give_me_job(URL1, URL2):
 
     #INDEED
     last_page_1 = extract_pages(URL1)
-    print("INDEED Last Page:",last_page_1)
+    #print("INDEED Last Page:",last_page_1)
     indeed = indeed_jobs(last_page_1)
     print('\n')
     #SARAMIN
@@ -91,4 +94,6 @@ def give_me_job(URL1, URL2):
     #return My_Job.to_excel('./Jobs(Python).xlsx')
 
 #Trial
-give_me_job(indeed_URL, saramin_URL)
+#give_me_job(indeed_URL, saramin_URL)
+
+print(extract_pages(saramin_URL))
