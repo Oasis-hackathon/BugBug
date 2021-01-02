@@ -1,6 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+#from selenium import webdriver
+#import time
+
+#driver = webdriver.Chrome("chromedriver")
 
 indeed_LIMIT = 50
 indeed_URL = f"https://kr.indeed.com/%EC%B7%A8%EC%97%85?q=python&limit={indeed_LIMIT}"
@@ -9,6 +13,7 @@ saramin_LIMIT = 100
 saramin_URL = f"http://www.saramin.co.kr/zf_user/search/recruit?searchType=search&searchword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&recruitPageCount={saramin_LIMIT}"
 
 def extract_pages(URL):
+    #driver.get(URL)
     results = requests.get(URL)
     soup = BeautifulSoup(results.text, "html.parser")
     pagination = soup.find("div", {"class": "pagination"})
