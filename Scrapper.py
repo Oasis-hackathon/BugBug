@@ -49,14 +49,12 @@ def extract_saramin(html):
         company = company.strip()
     else:
         company = None
-    locations = html.find("div", {"class": "job_condition"}).find_all("a")
-    loc = []
-    for location in locations:
-        loc.append(str(location.string))
-    location = loc
-    location = str(location).replace('[','').replace(']','').replace(',','').replace("'",'')
+    location = html.find("div", {"class": "job_condition"}).find_all("a")
+    loc = ""
+    for place in location:
+        loc += place.text + " "
     job_id = html["value"]
-    return {'SITE':'SARAMIN','Job': title, 'Company': company, "Location": location, "Link": f"http://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx={job_id}"}
+    return {'SITE':'SARAMIN','Job': title, 'Company': company, "Location": loc, "Link": f"http://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx={job_id}"}
 
 def indeed_jobs(last_page):
     jobs = pd.DataFrame()
@@ -93,7 +91,7 @@ def give_me_job(URL1, URL2):
 
     #INDEED
     last_page_1 = extract_pages(URL1)
-    print("INDEED Last Page:",last_page_1)
+    #print("INDEED Last Page:",last_page_1)
     indeed = indeed_jobs(last_page_1)
     print('\n')
     #SARAMIN
@@ -103,7 +101,6 @@ def give_me_job(URL1, URL2):
 
     My_Job = pd.concat([indeed,saramin])
     return My_Job.to_excel('./Jobs(Python).xlsx')
-    #print(saramin)
 
 #Trial
 give_me_job(indeed_URL, saramin_URL)
