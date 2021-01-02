@@ -25,7 +25,7 @@ def extract_pages(URL):
     return max_page
 
 def extract_indeed(html):
-    title = html.find("h2", {"class": "title"}).find("a")["title"]
+    title = html.find("h2", {"class": "title"}).find("a")["title"]zz
     company = html.find("span", {"class": "company"})
     company_anchor = company.find("a")
     if company_anchor is not None:
@@ -49,14 +49,12 @@ def extract_saramin(html):
         company = company.strip()
     else:
         company = None
-    locations = html.find("div", {"class": "job_condition"}).find_all("a")
-    loc = []
-    for location in locations:
-        loc.append(str(location.string))
-    location = loc
-    location = str(location).replace('[','').replace(']','').replace(',','').replace("'",'')
+    location = html.find("div", {"class": "job_condition"}).find_all("a")
+    loc = ""
+    for place in location:
+        loc += place.text + " "
     job_id = html["value"]
-    return {'SITE':'SARAMIN','Job': title, 'Company': company, "Location": location, "Link": f"http://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx={job_id}"}
+    return {'SITE':'SARAMIN','Job': title, 'Company': company, "Location": loc, "Link": f"http://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx={job_id}"}
 
 def indeed_jobs(last_page):
     jobs = pd.DataFrame()
