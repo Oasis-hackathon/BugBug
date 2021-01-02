@@ -96,10 +96,10 @@ def give_me_job(URL1, URL2):
     print("SARAMIN Last Page:",last_page_2)
     saramin = saramin_jobs(last_page_2)
 
-    #My_Job = pd.concat([indeed,saramin])
-    #return My_Job.to_excel('./Jobs(Python).xlsx')
+    My_Job = pd.concat([indeed,saramin])
+    return My_Job.to_excel('./Jobs(Python).xlsx')
 
 #Trial
-#give_me_job(indeed_URL, saramin_URL)
+give_me_job(indeed_URL, saramin_URL)
 
-print(extract_pages(saramin_URL))
+#print(extract_pages(saramin_URL))
