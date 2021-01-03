@@ -110,11 +110,11 @@ def give_me_job(keyword):
 
     filename = f'./[{date}]Jobs({keyword}).xlsx'
     My_Job = pd.concat([indeed,saramin])
-    return My_Job.to_excel(filename)
+    #return My_Job.to_excel(filename)
     #print(saramin)
 
 # #Trial
-word = input("Enter: ")
-give_me_job(word)
+# word = input("Enter: ")
+# give_me_job(word)
 
 #print(extract_pages(saramin_URL))
