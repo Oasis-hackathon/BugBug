@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import time
 import datetime
+from export import save_to_file
 #from selenium import webdriver
 
 t = datetime.datetime.now()
@@ -108,13 +108,10 @@ def give_me_job(keyword):
     print("SARAMIN Last Page:",last_page_2)
     saramin = saramin_jobs(last_page_2)
 
-    filename = f'./[{date}]Jobs({keyword}).xlsx'
-    My_Job = pd.concat([indeed,saramin])
-    #return My_Job.to_excel(filename)
-    #print(saramin)
+    return save_to_file(indeed,saramin,keyword)
 
 # #Trial
-# word = input("Enter: ")
-# give_me_job(word)
+word = input("Enter: ")
+give_me_job(word)
 
 #print(extract_pages(saramin_URL))
