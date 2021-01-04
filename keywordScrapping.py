@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import datetime
-from export import save_to_file
+#from exporter import save_to_file
 #from selenium import webdriver
 
 t = datetime.datetime.now()
@@ -108,7 +108,7 @@ def give_me_job(keyword):
     print("SARAMIN Last Page:",last_page_2)
     saramin = saramin_jobs(last_page_2)
 
-    return save_to_file(indeed,saramin,keyword)
+    # return save_to_file(indeed,saramin,keyword)
 
 # #Trial
 word = input("Enter: ")
