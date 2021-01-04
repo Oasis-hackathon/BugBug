@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
+#from selenium import webdriver
 
 t = datetime.datetime.now()
 y = t.year
@@ -79,11 +80,12 @@ def saramin_jobs(last_page, url):
     return jobs
 
 def give_me_job(keyword):
+  # indeed_LIMIT = 50
   indeed_URL = f"https://kr.indeed.com/%EC%B7%A8%EC%97%85?q={keyword}&limit=50"
   saramin_URL = f"http://www.saramin.co.kr/zf_user/search/recruit?searchType=search&searchword={keyword}&recruitPageCount=100"
   last_page_1 = extract_pages(indeed_URL)
   last_page_2 = extract_pages(saramin_URL)
-  jobs1 = indeed_jobs(last_page_1, indeed_URL)
+  jobs = indeed_jobs(last_page_1, indeed_URL)
   jobs2 = saramin_jobs(last_page_2, saramin_URL)
-  jobs = jobs1+jobs2
+  jobs.append(jobs2)
   return jobs
