@@ -97,22 +97,28 @@ def give_me_job(keyword):
     #INDEED
     URL1 = indeed_URL
     last_page_1 = extract_pages(URL1)
-    print("INDEED Last Page:",last_page_1)
+    print(f"INDEED Last Page: {last_page_1}\n")
     indeed = indeed_jobs(last_page_1)
     
     #SARAMIN
     URL2 = saramin_URL
     last_page_2 = extract_pages(URL2)
-    print("\nSARAMIN Last Page:",last_page_2)
+    print(f"\nSARAMIN Last Page: {last_page_2}\n")
     saramin = saramin_jobs(last_page_2)
 
-    print("\n<<Extracting is Done!>>")
+    print("\n<<Extracting is Done!>>\n")
     jobFile = pd.concat([indeed,saramin])
     filename = f'[{date}]Jobs({keyword}).xlsx'
-    return jobFile.to_excel(filename)
+    jobFile.to_excel(filename)
+    result = pd.read_excel(f'./{filename}')
+    result = result.drop("Unnamed: 0",1)
+    result.to_excel(filename)
+    print(result)
+    return result
 
 # #Trial
-word = input("Enter: ")
+word = input("Enter the keyword: ")
+word = word.capitalize()
 give_me_job(word)
 filename = f'[{date}]Jobs({word}).xlsx'
 
@@ -127,7 +133,7 @@ s.login(me, my_password)
 # Reciever Info
 email_list = []
 while 1:
-    email = input("Email Address:")
+    email = input("Enter your Email Address: ")
     if email != '-1':
         email_list.append(email)
     else:
@@ -149,13 +155,12 @@ for you in email_list:
     with open(f"./{filename}", 'rb') as file:
         part.set_payload(file.read())
         encoders.encode_base64(part)
-        part.add_header('Content-Disposition', "attachment",
-                        filename=f"{filename}")
+        part.add_header('Content-Disposition', "attachment", filename=f"{filename}")
         msg.attach(part)
 
     # Sending Email and quit server
     s.sendmail(me, you, msg.as_string())
-    print("\nSending...")
+    print("\nSending...\n")
     time.sleep(3)
     print("Email is sented!")
 
