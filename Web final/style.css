@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+KR:wght@500&display=swap");
+
+#hamburger {
+  border: 0;
+  outline: 0;
+}
+
 button {
   background-color: black;
 }
@@ -149,7 +155,7 @@ p {
 .in {
   box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2);
   border: none;
-  max-width: 660px;
+  max-width: 6300px;
   margin-left: auto;
 }
 
@@ -220,8 +226,7 @@ p {
   justify-content: center;
   padding-top: 67px;
   padding-bottom: 83px;
-  grid-template-columns: repeat(auto-fill, 300px);
-  grid-template-rows: repeat(auto-fill);
+
   gap: 40px 40px;
 }
 
