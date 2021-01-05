@@ -2,15 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import datetime
-#from exporter import save_to_file
-#from selenium import webdriver
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email.mime.text import MIMEText
+from email import encoders
+import time
 
 t = datetime.datetime.now()
 y = t.year
 m = t.month
 d = t.day
 date = str(y)+'-'+str(m)+'-'+str(d)
-#driver = webdriver.Chrome("chromedriver")
 
 def give_me_job(keyword):
 
@@ -21,7 +24,6 @@ def give_me_job(keyword):
     saramin_URL = f"http://www.saramin.co.kr/zf_user/search/recruit?searchType=search&searchword={keyword}&recruitPageCount={saramin_LIMIT}"
 
     def extract_pages(URL):
-        #driver.get(URL)
         results = requests.get(URL)
         soup = BeautifulSoup(results.text, "html.parser")
         pagination = soup.find("div", {"class": "pagination"})
@@ -76,7 +78,6 @@ def give_me_job(keyword):
                 job = extract_indeed(result)
                 df = pd.DataFrame.from_dict([job])
                 jobs = jobs.append(df)
-                #print(jobs)
         return jobs
 
     def saramin_jobs(last_page):
@@ -91,27 +92,80 @@ def give_me_job(keyword):
                 job = extract_saramin(result)
                 df = pd.DataFrame.from_dict([job])
                 jobs = jobs.append(df)
-                #print(jobs)
         return jobs
-
+    print("\n<<Start Extracting>>")
+    print("-"*200)
     #INDEED
     URL1 = indeed_URL
     last_page_1 = extract_pages(URL1)
-    print("INDEED Last Page:",last_page_1)
+    print(f"INDEED Last Page: {last_page_1}\n")
     indeed = indeed_jobs(last_page_1)
+    print("-"*200)
     
-    print('\n')
-
     #SARAMIN
     URL2 = saramin_URL
     last_page_2 = extract_pages(URL2)
-    print("SARAMIN Last Page:",last_page_2)
+    print(f"SARAMIN Last Page: {last_page_2}\n")
     saramin = saramin_jobs(last_page_2)
+    print("-"*200)
 
-    # return save_to_file(indeed,saramin,keyword)
+    print("<<Extracting is Done!>>\n")
+    jobFile = pd.concat([indeed,saramin])
+    filename = f'[{date}]Jobs({keyword}).xlsx'
+    jobFile.to_excel(filename)
+    result = pd.read_excel(f'./{filename}')
+    result = result.drop("Unnamed: 0",1)
+    result.to_excel(filename)
+    print(result)
+    print("-"*200)
+    return result
 
 # #Trial
-word = input("Enter: ")
+word = input("Enter the keyword: ")
+word = word.capitalize()
 give_me_job(word)
+filename = f'[{date}]Jobs({word}).xlsx'
 
-#print(extract_pages(saramin_URL))
+#Sender Info
+me = 'bugbugoasis2021@gmail.com'
+my_password = 'bugbugoasis2021'
+
+# Login
+s = smtplib.SMTP_SSL('smtp.gmail.com')
+s.login(me, my_password)
+
+# Reciever Info
+email_list = []
+while 1:
+    email = input("Enter your Email Address: ")
+    if email != '-1':
+        email_list.append(email)
+    else:
+        break
+
+for you in email_list:
+    # Email Info
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = f"{filename} from. BugBug"
+    msg['From'] = me
+    msg['To'] = you
+
+    # Email Contents
+    content = f"Here is your Job informations. Have a great day!"
+    part2 = MIMEText(content, 'plain')
+    msg.attach(part2)
+
+    part = MIMEBase('application', "octet-stream")
+    with open(f"./{filename}", 'rb') as file:
+        part.set_payload(file.read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment", filename=f"{filename}")
+        msg.attach(part)
+
+    # Sending Email and quit server
+    s.sendmail(me, you, msg.as_string())
+    print("\nSending...\n")
+    time.sleep(3)
+    print("Email is sented!")
+
+s.quit()
