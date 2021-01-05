@@ -7,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email import encoders
+import time
 
 t = datetime.datetime.now()
 y = t.year
@@ -92,21 +93,20 @@ def give_me_job(keyword):
                 df = pd.DataFrame.from_dict([job])
                 jobs = jobs.append(df)
         return jobs
-
+    print("\n<<Start Extracting>>")
     #INDEED
     URL1 = indeed_URL
     last_page_1 = extract_pages(URL1)
     print("INDEED Last Page:",last_page_1)
     indeed = indeed_jobs(last_page_1)
     
-    print('\n')
-
     #SARAMIN
     URL2 = saramin_URL
     last_page_2 = extract_pages(URL2)
-    print("SARAMIN Last Page:",last_page_2)
+    print("\nSARAMIN Last Page:",last_page_2)
     saramin = saramin_jobs(last_page_2)
 
+    print("\n<<Extracting is Done!>>")
     jobFile = pd.concat([indeed,saramin])
     filename = f'[{date}]Jobs({keyword}).xlsx'
     return jobFile.to_excel(filename)
@@ -155,5 +155,8 @@ for you in email_list:
 
     # Sending Email and quit server
     s.sendmail(me, you, msg.as_string())
+    print("\nSending...")
+    time.sleep(3)
+    print("Email is sented!")
 
 s.quit()
