@@ -1,37 +1,120 @@
-.navbar-brand {
-  font-weight: bold;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+KR:wght@500&display=swap");
 button {
   background-color: black;
 }
 
-p,
-h1 {
-  text-align: center;
-}
-
-h1 {
-  font-weight: bolder;
-}
-
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 5fr 0.5fr 50px 5fr;
   margin-top: 50px;
 }
-
-#in {
-  border-radius: 10px;
+main {
+  text-align: center;
+}
+.home_title {
+  margin-top: 5rem;
+  font-family: Noto Sans KR;
+  font-size: 50px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  color: #000000;
 }
 
 #main_btn {
+  margin-left: 1px;
   border-radius: 10px;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
+  border: none;
 }
 
-.search_btn {
+.fa-search {
+  color: white;
   align-items: center;
-  width: 15px;
+}
+
+#BugBug {
+  width: 152px;
+  height: 40px;
+  margin: 0 122.7px 0 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 33px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+}
+
+#Home {
+  width: 66px;
+  height: 25px;
+  margin: 8px 55px 7px;
+  font-family: Montserrat;
+  font-size: 21px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 0.02px;
+  text-align: left;
+  color: #000000;
+}
+
+#Features {
+  width: 94px;
+  height: 25px;
+  margin: 8px 55px 7px;
+  font-family: Montserrat;
+  font-size: 21px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 0.02px;
+  text-align: left;
+}
+
+#wio {
+  width: 200px;
+  height: 25px;
+  margin: 8px 0 7px 55px;
+
+  font-family: Montserrat;
+  font-size: 21px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 0.02px;
+  text-align: left;
+}
+
+p {
+  padding-top: 4rem;
+  opacity: 0.8;
+  font-family: Noto Sans KR;
+  font-size: 1rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.71;
+  letter-spacing: -0.48px;
+  text-align: center;
+  color: #7d7d7d;
+}
+
+.in {
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+#layout {
+  border-radius: 10px;
+  border: none;
 }
