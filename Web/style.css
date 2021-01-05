@@ -3,6 +3,16 @@ button {
   background-color: black;
 }
 
+h2 {
+  text-align: left;
+  padding: 1.5rem 0 0.5rem 0;
+  font-size: 24px;
+}
+
+main {
+  font-family: Noto Sans KR;
+}
+
 .container {
   display: grid;
   grid-template-columns: 5fr 0.5fr 50px 5fr;
@@ -29,6 +39,7 @@ main {
   height: 60px;
   width: 60px;
   border: none;
+  margin-right: auto;
 }
 
 .fa-search {
@@ -84,7 +95,6 @@ main {
   width: 200px;
   height: 25px;
   margin: 8px 0 7px 55px;
-
   font-family: Montserrat;
   font-size: 21px;
   font-weight: 600;
@@ -109,12 +119,76 @@ p {
   color: #7d7d7d;
 }
 
+.intro {
+  color: black;
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: -0.4px;
+  font-stretch: normal;
+  font-style: normal;
+  padding-bottom: 54px;
+}
+
 .in {
   box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2);
   border: none;
+  max-width: 660px;
+  margin-left: auto;
 }
 
 #layout {
   border-radius: 10px;
   border: none;
+}
+
+.feature_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #fbfbfd;
+  padding-top: 67px;
+  padding-bottom: 83px;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-rows: repeat(auto-fill);
+  gap: 40px 40px;
+}
+
+.feat {
+  flex: ;
+  text-align: left;
+  background-color: white;
+  border-radius: 13px;
+  width: 298px;
+  height: 289px;
+  padding: 0rem 2rem 0 2rem;
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.08);
+}
+
+#first {
+  padding-top: 105px;
+  font-family: Noto Sans KR;
+  font-weight: bold;
+  padding-bottom: 54px;
+  font-size: 40px;
+}
+
+#second {
+  background-color: black;
+  color: white;
+  font-family: Noto Sans KR;
+  font-weight: bold;
+  font-size: 26px;
+  width: 400px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5px;
+  padding-top: 2px;
 }
