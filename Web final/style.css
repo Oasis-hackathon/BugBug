@@ -3,6 +3,18 @@ button {
   background-color: black;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+body {
+  padding-top: 175px;
+}
+
 h2 {
   text-align: left;
   padding: 1.5rem 0 0.5rem 0;
@@ -159,7 +171,6 @@ p {
 }
 
 .feat {
-  flex: ;
   text-align: left;
   background-color: white;
   border-radius: 13px;
@@ -191,4 +202,63 @@ p {
   margin-right: auto;
   padding-bottom: 5px;
   padding-top: 2px;
+}
+
+/* contact css*/
+
+.contact-profile {
+  max-width: 80px;
+  max-height: 80px;
+  overflow: hidden;
+  border-radius: 30%;
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.28);
+}
+
+.feature_list2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 67px;
+  padding-bottom: 83px;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-rows: repeat(auto-fill);
+  gap: 40px 40px;
+}
+
+.feat2 {
+  text-align: left;
+  background-color: #fbfbfd;
+  border-radius: 13px;
+  width: 500px;
+  padding: 1.5rem 2rem 0 2rem;
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  box-shadow: 0 1px 14px 0 rgba(0, 0, 0, 0.13);
+}
+
+.full_name {
+  margin: 0 0 0 20px;
+  position: relative;
+
+  right: -15px;
+  font-family: Noto Sans KR;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.contact-dot {
+  margin-top: 15px;
+  font-family: Noto Sans KR;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.contact-intro {
+  font-family: Noto Sans KR;
+  font-size: 18px;
+}
+
+.setting {
+  margin: 15px 0 25px 0;
+  float: right;
 }
