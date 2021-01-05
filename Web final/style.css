@@ -267,3 +267,15 @@ p {
   margin: 15px 0 25px 0;
   float: right;
 }
+
+.in_line {
+  display: inline;
+}
+
+input {
+  margin: 0;
+  display: inline;
+  outline: none;
+  box-sizing: border-box;
+  color: black;
+}
