@@ -94,19 +94,22 @@ def give_me_job(keyword):
                 jobs = jobs.append(df)
         return jobs
     print("\n<<Start Extracting>>")
+    print("-"*200)
     #INDEED
     URL1 = indeed_URL
     last_page_1 = extract_pages(URL1)
     print(f"INDEED Last Page: {last_page_1}\n")
     indeed = indeed_jobs(last_page_1)
+    print("-"*200)
     
     #SARAMIN
     URL2 = saramin_URL
     last_page_2 = extract_pages(URL2)
-    print(f"\nSARAMIN Last Page: {last_page_2}\n")
+    print(f"SARAMIN Last Page: {last_page_2}\n")
     saramin = saramin_jobs(last_page_2)
+    print("-"*200)
 
-    print("\n<<Extracting is Done!>>\n")
+    print("<<Extracting is Done!>>\n")
     jobFile = pd.concat([indeed,saramin])
     filename = f'[{date}]Jobs({keyword}).xlsx'
     jobFile.to_excel(filename)
@@ -114,6 +117,7 @@ def give_me_job(keyword):
     result = result.drop("Unnamed: 0",1)
     result.to_excel(filename)
     print(result)
+    print("-"*200)
     return result
 
 # #Trial
